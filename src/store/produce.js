@@ -18,19 +18,20 @@ export const toggleLike = (id) => {
 };
 
 const produceReducer = (state = {}, action) => {
+  const id = action.id;
+  const newState = { ...state };
+
   switch (action.type) {
     case POPULATE:
-      const newState = { ...state };
       action.produce.forEach((produce) => {
         newState[produce.id] = produce;
       });
       return newState;
+
     case TOGGLE_LIKE:
-      const id = action.id;
-      const toggleObj = { ...state };
-      const toggleLike = toggleObj[id];
-      toggleObj[id].liked = !toggleLike.liked;
-      return toggleObj;
+      newState[id].liked = !newState[id].liked;
+      return newState;
+      
     default:
       return state;
   }
