@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Cart from './components/Cart';
 import ProduceList from './components/ProduceList';
 import { populateProduce } from './store/produce';
@@ -11,7 +11,14 @@ function App() {
     dispatch(populateProduce());
   }, [dispatch]);
 
+  const cart = useSelector((state) => state.cart);
   const [showCart, setShowCart] = useState(false);
+
+  useEffect(() => {
+    if (Object.keys(cart).length) {
+      setShowCart(true);
+    };
+  }, [cart]);
 
   return (
     <>

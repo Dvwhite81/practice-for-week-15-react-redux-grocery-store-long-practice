@@ -3,10 +3,7 @@ import ProduceDetails from './ProduceDetails';
 import './ProduceList.css';
 
 function ProduceList() {
-  const produce = useSelector(state => state.produce);
-
-  const produceArr = Object.values(produce);
-
+  const produceArr = useSelector(getAllProduce);
 
   return (
     <>
@@ -20,5 +17,7 @@ function ProduceList() {
     </>
   );
 }
+
+export const getAllProduce = (state) => Object.values(state.produce);
 
 export default ProduceList;

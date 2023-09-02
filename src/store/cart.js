@@ -18,6 +18,7 @@ export default function cartReducer(state = {}, action) {
           ...action,
           count: 1,
         };
+
       }
       return newState;
 
